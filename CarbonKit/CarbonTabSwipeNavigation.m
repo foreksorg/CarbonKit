@@ -599,6 +599,15 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
     
     // Create constraints using visual format
     
+    float leftPadding = 0;
+    
+    if( CGRectGetWidth(self.carbonTabSwipeScrollView.carbonSegmentedControl.frame) < CGRectGetWidth(self.view.frame) ) {
+        
+        leftPadding = (CGRectGetWidth(self.view.frame) - CGRectGetWidth(self.carbonTabSwipeScrollView.carbonSegmentedControl.frame)) / 2;
+        self.carbonTabSwipeScrollView.scrollEnabled = NO;
+    }
+    
+    
     [self.toolbar addConstraints:[NSLayoutConstraint
                                   constraintsWithVisualFormat:@"V:|[_carbonTabSwipeScrollView]|"
                                   options:0
@@ -606,10 +615,11 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
                                   views:views]];
     
     [self.toolbar addConstraints:[NSLayoutConstraint
-                                  constraintsWithVisualFormat:@"H:|[_carbonTabSwipeScrollView]|"
+                                  constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|-%f-[_carbonTabSwipeScrollView]|",leftPadding]
                                   options:0
                                   metrics:nil
                                   views:views]];
+    
 }
 
 - (void)createTabSwipeScrollViewWithItems:(NSArray *)items andCustomView:(UIView *)customView{
@@ -641,6 +651,15 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
     
     // Create constraints using visual format
     
+    float leftPadding = 0.0;
+    
+    if( CGRectGetWidth(self.carbonTabSwipeScrollView.frame) < CGRectGetWidth(self.view.frame) ) {
+        
+        leftPadding = CGRectGetWidth(self.view.frame) / CGRectGetWidth(self.carbonTabSwipeScrollView.frame);
+        self.carbonTabSwipeScrollView.scrollEnabled = NO;
+    }
+    
+    
     [self.toolbar addConstraints:[NSLayoutConstraint
                                   constraintsWithVisualFormat:@"V:|[_carbonTabSwipeScrollView]|"
                                   options:0
@@ -648,7 +667,7 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
                                   views:views]];
     
     [self.toolbar addConstraints:[NSLayoutConstraint
-                                  constraintsWithVisualFormat:@"H:|[_carbonTabSwipeScrollView]|"
+                                  constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|-%f-[_carbonTabSwipeScrollView]|",leftPadding]
                                   options:0
                                   metrics:nil
                                   views:views]];
