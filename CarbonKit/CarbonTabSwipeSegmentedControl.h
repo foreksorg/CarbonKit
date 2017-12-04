@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) IndicatorPosition indicatorPosition;
 @property(nonatomic) IndicatorHorizontalPositionFocus indicatorHorizontalPositionFocus; // TODO
 @property(nonatomic) CGFloat tabExtraWidth;
+@property(nonatomic) BOOL useAnimation;
 @property(nonatomic, strong, nullable) UIColor *imageNormalColor;
 @property(nonatomic, strong, nullable) UIColor *imageSelectedColor;
 @property(nonatomic, strong, nonnull) UIImageView *indicator;

@@ -95,6 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CarbonTabSwipeNavigation : UIViewController
 
+@property(nonatomic) BOOL useAnimationForSegmentedControl;
 @property(nonatomic) NSUInteger currentTabIndex;
 @property(nonatomic) NSLayoutConstraint *toolbarHeight;
 @property(nonatomic, nonnull) UIToolbar *toolbar;
