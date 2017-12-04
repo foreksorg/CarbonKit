@@ -85,6 +85,7 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
 }
 
 - (instancetype)initWithItems:(NSArray *)items delegate:(id)target {
+    self.useAnimationForSegmentedControl = YES;
     selectedIndex = 0;
     self.delegate = target;
     self.viewControllers = [NSMutableDictionary new];
@@ -100,6 +101,7 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
 }
 
 - (instancetype)initWithItems:(NSArray *)items toolBar:(UIToolbar *)toolBar delegate:(id)target {
+    self.useAnimationForSegmentedControl = YES;
     selectedIndex = 0;
     self.delegate = target;
     self.viewControllers = [NSMutableDictionary new];
@@ -114,6 +116,7 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
 }
 
 - (instancetype)initWithItems:(NSArray *)items toolBar:(UIToolbar *)toolBar withCustomView:(UIView *)customView delegate:(id)target {
+    self.useAnimationForSegmentedControl = YES;
     selectedIndex = 0;
     self.delegate = target;
     self.viewControllers = [NSMutableDictionary new];
@@ -574,6 +577,7 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
     NSAssert(self.toolbar, @"Toolbar is not created!");
     
     self.carbonTabSwipeScrollView = [[CarbonTabSwipeScrollView alloc] initWithItems:items];
+    self.carbonSegmentedControl.useAnimation = self.useAnimationForSegmentedControl;
     [self.toolbar addSubview:self.carbonTabSwipeScrollView];
     
     [self.carbonTabSwipeScrollView.carbonSegmentedControl addTarget:self

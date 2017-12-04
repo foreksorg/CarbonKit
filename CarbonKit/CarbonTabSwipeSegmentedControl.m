@@ -36,6 +36,7 @@
         self.indicatorHeight = 3;
         self.selectedSegmentIndex = 0;
         self.apportionsSegmentWidthsByContent = YES;
+        self.useAnimation = YES;
 
         // Create indicator
         self.indicator = [UIImageView new];
@@ -199,7 +200,7 @@
 - (void)segmentedTapped:(id)sender {
     self.indicatorMinX = [self getMinXForSegmentAtIndex:self.selectedSegmentIndex];
     self.indicatorWidth = [self getWidthForSegmentAtIndex:self.selectedSegmentIndex];
-    [self updateIndicatorWithAnimation:YES];
+    [self updateIndicatorWithAnimation:self.useAnimation];
 }
 
 - (void)updateIndicatorWithAnimation:(BOOL)animation {
