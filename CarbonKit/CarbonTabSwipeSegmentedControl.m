@@ -210,15 +210,17 @@
         indicatorY = CGRectGetHeight(self.frame) - self.indicatorHeight;
     }
 
-    [UIView animateWithDuration:animation ? 0.3 : 0
-                     animations:^{
-                         CGRect rect = self.indicator.frame;
-                         rect.origin.x = self.indicatorMinX;
-                         rect.origin.y = indicatorY;
-                         rect.size.width = self.indicatorWidth;
-                         rect.size.height = self.indicatorHeight;
-                         self.indicator.frame = rect;
-                     }];
+    if(animation){
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             CGRect rect = self.indicator.frame;
+                             rect.origin.x = self.indicatorMinX;
+                             rect.origin.y = indicatorY;
+                             rect.size.width = self.indicatorWidth;
+                             rect.size.height = self.indicatorHeight;
+                             self.indicator.frame = rect;
+                         }];
+    }
 }
 
 @end
