@@ -43,10 +43,10 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
     
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     id views = @{
-                 @"carbonTabSwipe" : self.view,
-                 @"topLayoutGuide" : rootViewController.topLayoutGuide,
-                 @"bottomLayoutGuide" : rootViewController.bottomLayoutGuide
-                 };
+        @"carbonTabSwipe" : self.view,
+        @"topLayoutGuide" : rootViewController.topLayoutGuide,
+        @"bottomLayoutGuide" : rootViewController.bottomLayoutGuide
+    };
     
     NSString *verticalFormat = @"V:[topLayoutGuide][carbonTabSwipe][bottomLayoutGuide]";
     [rootViewController.view
@@ -85,48 +85,62 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
 }
 
 - (instancetype)initWithItems:(NSArray *)items delegate:(id)target {
-    self.useAnimationForSegmentedControl = YES;
-    selectedIndex = 0;
-    self.delegate = target;
-    self.viewControllers = [NSMutableDictionary new];
+    self = [super init];
     
-    [self createSegmentedToolbar];
-    [self createTabSwipeScrollViewWithItems:items];
-    [self addToolbarIntoSuperview];
-    [self createPageViewController];
-    
-    [self loadFirstViewController];
-    
+    if (self) {
+        self.useAnimationForSegmentedControl = YES;
+        selectedIndex = 0;
+        self.delegate = target;
+        self.viewControllers = [NSMutableDictionary new];
+        
+        [self createSegmentedToolbar];
+        [self createTabSwipeScrollViewWithItems:items];
+        [self addToolbarIntoSuperview];
+        [self createPageViewController];
+        
+        [self loadFirstViewController];
+    }
     return self;
 }
 
 - (instancetype)initWithItems:(NSArray *)items toolBar:(UIToolbar *)toolBar delegate:(id)target {
-    self.useAnimationForSegmentedControl = YES;
-    selectedIndex = 0;
-    self.delegate = target;
-    self.viewControllers = [NSMutableDictionary new];
+    self = [super init];
     
-    [self setToolbar:toolBar];
-    [self createTabSwipeScrollViewWithItems:items];
-    [self createPageViewController];
+    if (self) {
+        self.useAnimationForSegmentedControl = YES;
+        selectedIndex = 0;
+        self.delegate = target;
+        self.viewControllers = [NSMutableDictionary new];
+        
+        [self setToolbar:toolBar];
+        [self createTabSwipeScrollViewWithItems:items];
+        [self createPageViewController];
+        
+        [self loadFirstViewController];
+    }
     
-    [self loadFirstViewController];
     
     return self;
 }
 
 - (instancetype)initWithItems:(NSArray *)items toolBar:(UIToolbar *)toolBar withCustomView:(UIView *)customView delegate:(id)target {
-    self.useAnimationForSegmentedControl = YES;
-    selectedIndex = 0;
-    self.delegate = target;
-    self.viewControllers = [NSMutableDictionary new];
     
-    [self setToolbar:toolBar];
-    [self setCustomView:customView];
-    [self createTabSwipeScrollViewWithItems:items andCustomView:customView];
-    [self createPageViewController];
+    self = [super init];
     
-    [self loadFirstViewController];
+    if (self) {
+        self.useAnimationForSegmentedControl = YES;
+        selectedIndex = 0;
+        self.delegate = target;
+        self.viewControllers = [NSMutableDictionary new];
+        
+        [self setToolbar:toolBar];
+        [self setCustomView:customView];
+        [self createTabSwipeScrollViewWithItems:items andCustomView:customView];
+        [self createPageViewController];
+        
+        [self loadFirstViewController];
+    }
+    
     
     return self;
 }
@@ -219,7 +233,7 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
         selectedSegmentMinX = [self.carbonSegmentedControl getMinXForSegmentAtIndex:index];
         selectedSegmentWidth = [self.carbonSegmentedControl getWidthForSegmentAtIndex:index];
     }
-
+    
     
     [self.carbonSegmentedControl setIndicatorMinX:selectedSegmentMinX];
     [self.carbonSegmentedControl setIndicatorWidth:selectedSegmentWidth];
@@ -246,8 +260,8 @@ UIPageViewControllerDataSource, UIScrollViewDelegate>
     previewsOffset = CGPointMake(offsetX, 0);
     [UIView animateWithDuration:isLoaded ? 0.3 : 0
                      animations:^{
-                         self.carbonTabSwipeScrollView.contentOffset = previewsOffset;
-                     }];
+        self.carbonTabSwipeScrollView.contentOffset = previewsOffset;
+    }];
 }
 
 #pragma mark - PageViewController data source
@@ -435,8 +449,8 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
     
     [UIView animateWithDuration:isSwipeLocked ? 0.3 : 0
                      animations:^{
-                         self.carbonTabSwipeScrollView.contentOffset = CGPointMake(offsetX, 0);
-                     }];
+        self.carbonTabSwipeScrollView.contentOffset = CGPointMake(offsetX, 0);
+    }];
     
     previewsOffset = scrollView.contentOffset;
 }
@@ -485,9 +499,9 @@ willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewContro
     
     // Views dictionary
     NSDictionary *views = @{
-                            @"pageViewController" : self.pageViewController.view,
-                            @"segmentedToolbar" : self.toolbar
-                            };
+        @"pageViewController" : self.pageViewController.view,
+        @"segmentedToolbar" : self.toolbar
+    };
     
     // Create constraints using visual format
     
